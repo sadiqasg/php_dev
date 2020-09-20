@@ -9,8 +9,16 @@ if ($mysqli->connect_errno) {
 
 $id = $_GET['id'];
 
-if ($mysqli->query("DELETE FROM blogposts WHERE id='$id'") === TRUE) {
-    header('Location: /');
+echo $id;
+
+if ($mysqli->query("DELETE FROM likes WHERE id='$id'") === TRUE) {
+    if ($mysqli->query("DELETE FROM blogposts WHERE id='$id'") === TRUE) {
+        echo "deleted, whew";
+    }
+} else {
+    echo "Omo";
 }
 
 mysqli_close($mysqli);
+
+?>
